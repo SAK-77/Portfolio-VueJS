@@ -16,8 +16,24 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue')
-    }
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'PageNotFound',
+      component: () => import('../views/PageNotFound'),
+    },
   ]
+  /*scrollBehavior(to, from, savedPosition) {
+    if(!savedPosition) {
+      return { left: 0, top: 0 };
+    } else {
+      return savedPosition;
+    }
+  },
+  router.afterEach((to) => {
+    document.title = `Salomon KOUASSI - ${to.name}`;
+  });
+  */
 })
 
 export default router
