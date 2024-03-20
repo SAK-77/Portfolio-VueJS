@@ -10,30 +10,12 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
-    },
-    {
+      //Redirect every wrong path to 404Error page
       path: '/:pathMatch(.*)*',
-      name: 'PageNotFound',
-      component: () => import('../views/PageNotFound'),
+      name: '404',
+      component: () => import('../views/404View.vue')
     },
   ]
-  /*scrollBehavior(to, from, savedPosition) {
-    if(!savedPosition) {
-      return { left: 0, top: 0 };
-    } else {
-      return savedPosition;
-    }
-  },
-  router.afterEach((to) => {
-    document.title = `Salomon KOUASSI - ${to.name}`;
-  });
-  */
 })
 
 export default router

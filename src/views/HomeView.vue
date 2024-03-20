@@ -6,21 +6,34 @@
 -->
 
 <script setup>
-  //import Header from '../components/Header.vue';
-  //import Footer from '../components/Footer.vue';
-  import About from "./AboutView.vue";
-  import Project from '../components/Project.vue';
-  import ContactForm from "../components/ContactForm.vue";
+  import Header from "../components/Header.vue"
+  import Footer from "../components/Footer.vue"
+  import Project from "../components/Project.vue"
+  import Contact from "../components/ContactForm.vue"
+  import About from "../components/About.vue";
+  import Home from "../components/HomeHero.vue";
 </script>
 
+
 <template>
-  <div class="main">
-    <About/>
-    <Project />
-    <ContactForm/>
+  <div class="page-container">
+    <Header></Header>
+    <div class="main">
+      <Home></Home>
+      <About></About>
+      <Project></Project>
+      <Contact></Contact>
+    </div>
+    <Footer></Footer>
   </div>
 </template>
 
-<style>
+<style scoped>
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(202, 198, 211, 0.156);
+}
 
 </style>

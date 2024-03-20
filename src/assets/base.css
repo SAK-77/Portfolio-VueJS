@@ -55,6 +55,7 @@
 *::after {
   box-sizing: border-box;
   margin: 0;
+  padding: 0;
   font-weight: normal;
 }
 
@@ -62,6 +63,11 @@ body {
   min-height: 100vh;
   color: var(--color-text);
   background: var(--color-background);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100%;
+  width: 100%;
+  
   transition:
     color 0.5s,
     background-color 0.5s;
@@ -84,3 +90,4 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+

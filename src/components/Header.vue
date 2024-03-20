@@ -1,161 +1,179 @@
 <!-- eslint-disable vue/multi-word-component-names -->
+<!-- eslint-disable no-unused-vars -->
+<!-- eslint-disable vue/multi-word-component-names -->
 <!--
     • Le header est présent sur toutes les pages.
     • une photo(de moi en mode logo) qui ramène en haut de la page d'accueil lorsqu'on clique dessus.
     • Un menu avec des liens d'ancrage vers AboutView, Projects et le ContactForm.
 -->
-<template>
-    <div class="header">
-        <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
-        <div class="NavBar">
-
-            <nav>
-                <RouterLink to="/">Home</RouterLink>
-                <RouterLink to="/about">About</RouterLink>
-                <RouterLink to="/project">Project</RouterLink>
-                <RouterLink to="/contact">Contact Me</RouterLink>
-                <RouterLink>Resume</RouterLink>
-                <div v-scrollanimation style="transition-delay: 700ms">
-                    <ThemeChanger />
-                </div>
-
-                <!--
-                <div class="header__content">
-                    <div class="header__logo-container">
-                    <div class="header__logo-img-cont">
-                        <img
-                        src="./assets/png/john-doe.png"
-                        alt="Ram Maheshwari Logo Image"
-                        class="header__logo-img"
-                        />
-                    </div>
-                    <span class="header__logo-sub">John Doe</span>
-                    </div>
-                    <div class="header__main">
-                    <ul class="header__links">
-                        <li class="header__link-wrapper">
-                        <a href="./" class="header__link"> Home </a>
-                        </li>
-                        <li class="header__link-wrapper">
-                        <a href="./#about" class="header__link">About </a>
-                        </li>
-                        <li class="header__link-wrapper">
-                        <a href="./#projects" class="header__link"> Projects </a>
-                        </li>
-                        <li class="header__link-wrapper">
-                        <a href="./#contact" class="header__link"> Contact </a>
-                        </li>
-                    </ul>
-                    <div class="header__main-ham-menu-cont">
-                        <img
-                        src="./assets/svg/ham-menu.svg"
-                        alt="hamburger menu"
-                        class="header__main-ham-menu"
-                        />
-                    </div>
-                    </div>
-                </div>
-                <div class="header__sm-menu">
-                    <div class="header__sm-menu-content">
-                    <ul class="header__sm-menu-links">
-                        <li class="header__sm-menu-link">
-                        <a href="./"> Home </a>
-                        </li>
-
-                        <li class="header__sm-menu-link">
-                        <a href="./#about"> About </a>
-                        </li>
-
-                        <li class="header__sm-menu-link">
-                        <a href="./#projects"> Projects </a>
-                        </li>
-
-                        <li class="header__sm-menu-link">
-                        <a href="./#contact"> Contact </a>
-                        </li>
-                    </ul>
-                    </div>
-                </div>
-                -->
-     
-            </nav>
-        </div>
-    </div>
-  
-    <RouterView />
-</template>
-
-<script>
-    import ThemeChanger from './ThemeChanger.vue';
-    //import {  } from "./";
-    export {
-        ThemeChanger
-    };
+<script setup>
+    /*import ThemeChanger from './ThemeChanger.vue';*/
     
+    import { onMounted, ref } from "vue";
+    //import Contact from "./Contact.vue"
+    //import Home from "../views/HomeView.vue";
+
+    const display = ref(true);
+
+    onMounted(() => {
+        let linksContainer = document.querySelector(".navigation");
+        let links = linksContainer.querySelectorAll("a");
+        let project = document.querySelector("#project");
+        let contact = document.querySelector("#contact");
+        let presentation = document.querySelector("#presentation");
+        let home = document.querySelector("#home-hero")
+
+        //Function to set an underline when scrolling on the right section
+        function changeStyleOnScroll() {
+            let projectTop = project.offsetTop;
+            let contactTop = 600;
+            let presentationTop = -20;
+            window.onscroll = () => {
+                let currentSection = "";
+                if (scrollY >= contactTop) {
+                    currentSection = contact.id
+                } else if (scrollY >= projectTop) {
+                    currentSection = project.id;
+                } else if (scrollY >= presentationTop) {
+                    currentSection = presentation.id;
+                }
+
+                links.forEach(link => {
+                    link.classList.remove("active");
+                    if(link.classList.contains(currentSection)){
+                        link.classList.add("active");
+                    }
+                })
+            }
+        }
+                
+
+        //Function to add underline when a link is clicked and remove the underline from the othes links
+        function changeLinkStyleOnCLick() {
+            links.forEach(link => {
+                link.addEventListener("click",() => {
+                    links.forEach(link => {
+                        link.classList.remove("active");
+                    })
+                    link.classList.add("active");
+                })
+            })
+        }
+        
+        changeLinkStyleOnCLick();
+        changeStyleOnScroll()
+    })
+
 </script>
+
+<template>
+
+    <header class="header">
+        <div class="header-container">
+            <div class="header-child logo-container">
+                <div class="logo-img-cont">
+                    <img
+                    src=""
+                    alt="logo Image" class="logo-img" />
+                </div>
+                <h4>Assoua KOUASSI</h4>
+            </div>
+
+            <div class="header-child navigation">
+                <nav>
+                    <ul class="navigation-links">
+                        <li class="navigation-link"><a href="#home-hero"> Home </a></li>
+                        <li class="navigation-link"><a href="#about"> About </a></li>
+                        <li class="navigation-link"><a href="#project"> Projects </a></li>
+                        <li class="navigation-link"><a href="#contact"> Contact </a></li>
+                        <!-- <li><button class="btn btn-theme btn-sm"><a href="">Download CV</a></button></li> -->
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>            
+</template>
 
 <style scoped>
     .header {
-        line-height: 1.5;
-        max-height: 100vh;
-    }
-
-    .logo {
-        display: block;
-        margin: 0 auto 2rem;
-    }
-
-    nav {
+        position: fixed;
+        background: grey;
         width: 100%;
-        font-size: 12px;
-        text-align: center;
-        margin-top: 2rem;
     }
 
-    nav a.router-link-exact-active {
-        color: var(--color-text);
+    .header-container {
+        margin: 1rem;
+        display: flex;
     }
 
-    nav a.router-link-exact-active:hover {
-        background-color: transparent;
+    .header-child {
+        flex: 1;
     }
 
-    nav a {
-        display: inline-block;
-        padding: 0 1rem;
-        border-left: 1px solid var(--color-border);
+    .logo-container {
+        display: flex;
+        align-items: center;
+        margin: 5px;
+        cursor: pointer;
+        font-size: 1rem;
     }
 
-    nav a:first-of-type {
-        border: 0;
+    .navigation {
+        display: flex;
+        align-items: center;
+        justify-content: end;
     }
 
-    @media (min-width: 1024px) {
-        .header {
-            display: flex;
-            place-items: center;
-            padding-right: calc(var(--section-gap) / 2);
-        }
+    ul{
+        list-style: none;
+    }
 
-        .logo {
-            margin: 0 2rem 0 0;
-        }
+    li{
+        display: inline;
+    }
 
-        header .wrapper {
-            display: flex;
-            place-items: flex-start;
-            flex-wrap: wrap;
-        }
+    a{
+        text-decoration: none;
+        color: rgb(24, 23, 23);
+        font-size: 1rem;
+        font-weight: bold;
+    }
 
-        nav {
-            text-align: left;
-            margin-left: -1rem;
-            font-size: 1rem;
+    a:active {
+        text-decoration: #000;
+    }
 
-            padding: 1rem 0;
-            margin-top: 1rem;
-        }
+    a:hover {
+        text-shadow: rgb(16, 9, 112) 1px 0 10px;
+        transition-duration: 450ms;
+    }
+
+    .logo-img-cont {
+        margin-right: 0.8rem;
+        width: 3.2rem;
+        height: 2.5rem;
+        overflow: hidden;
+        border-radius: 30rem;
+        background: rgb(185, 181, 181);
+        border-style: solid;
+        color: white;
+    }
+
+
+    .logo-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    h4 {
+        color: #000;
+        font-weight: bold;
+    }
+
+    .navigation-link {
+        padding: 0.2rem;
     }
 </style>
 
