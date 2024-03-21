@@ -15,8 +15,7 @@
       <div class="upper-child description">
         <h2>SALOMON KOUASSI</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit facilis
-          tempora explicabo quae quod deserunt
+          A passionnate Web & Web-mobile Developer building responsive Websites and Web Applications 
         </p>
       </div>
 
@@ -24,18 +23,18 @@
         <h2>SOCIALS</h2>
         
         <div class="social-container">
-          <a target="_blank" rel="noreferrer" href="#" class="social-link">
+          <a target="_blank" rel="noreferrer" href="https://github.com/SAK-77" class="social-link">
             <img
               src="https://d33wubrfki0l68.cloudfront.net/5557d5a11584d7201a38ee1a95200f57a4cc0f88/15085/assets/png/github-ico.png"
               alt="" class="icon" />
           </a>
-          <a target="_blank" rel="noreferrer" href="#" class="social-link">
-            <img src="./assets/icons8-twitter-50.png" alt="" class="icon" />
-          </a>
-          <a target="_blank" rel="noreferrer" href="#" class="social-link">
+          <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/learning/" class="social-link">
             <img
               src="https://d33wubrfki0l68.cloudfront.net/7f29579dde49e02480372aa49f7189c5536b0118/34b92/assets/png/linkedin-ico.png"
               alt="" class="icon" />
+          </a>
+          <a target="_blank" rel="noreferrer" href="https://www.figma.com/files/user/1096570112869161197?fuid=1096570112869161197" class="social-link">
+            <img src="./icons/figma.png" alt="" class="icon figma" />
           </a>
         </div>
       </div>
@@ -54,12 +53,13 @@
 
   .footer {
     background: #000;
-    color: hsl(0, 0%, 100%); 
+    color: hsl(0, 0%, 100%);
   }
 
   .upper {
-    margin: 1rem;
+    margin: 2.5rem;
     display: flex;
+
   }
 
   .upper-child{
@@ -68,8 +68,12 @@
     margin-right: 1.3rem;
   }
 
-  .social-links, .socials-container{
+  .social-links, .social-container{
     text-align: center;
+  }
+
+  .social-link{
+    margin-left: 2rem;
   }
 
   .bottom {
@@ -84,6 +88,7 @@
   h2 {
     font-size: 2.1rem;
     font-weight: bold;
+    margin: 0.5rem;
   }
 
   p {
@@ -96,6 +101,9 @@
     width: 2.5rem; 
   }
 
+  .figma{
+    background-color: white;
+  }
   .bottom a {
     text-decoration: none;
     font-weight: bold;
