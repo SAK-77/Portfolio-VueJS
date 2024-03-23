@@ -5,6 +5,7 @@
     Vos créations avec à chaque fois une image et un titre. 
     Une modal s'ouvrira avec plus de photos et détails au clic.
     <NB:>La disposition est libre.</NB:>
+    Au survol d'une création, une ombre apparait en bas et à droite.
 -->
 
 <script setup>
@@ -79,15 +80,17 @@
 <template>
     <!-- Create an anchor for the anchor link -->
     <a class="anchor" id="project"></a>
-    <h2 class="project-title-section">Projects</h2>
-    <section class="project-container">
-        <ul class="project">
-            <li class="project__item" v-for="project in projects" :key="project.id" @click="executeFunction(project)">
-                <h3 class="item__title">{{ project.title }}</h3>
-                <div class="item__background-image" :style="{'background-image': 'url('+ project.imageLinks + ')'}"></div>
-            </li>
-        </ul>
-    </section>
+    <div class="main-container">
+        <h2 class="project-title-section">PROJECTS 🛠️</h2>
+        <div class="project-container">
+            <ul class="project">
+                <li class="project__item" v-for="project in projects" :key="project.id" @click="executeFunction(project)">
+                    <h3 class="item__title">{{ project.title }}</h3>
+                    <div class="item__background-image" :style="{'background-image': 'url('+ project.imageLinks + ')'}"></div>
+                </li>
+            </ul>
+        </div>
+    </div>
     <Modal :display="display" :title="title" :date="date" :technology="technology" :links="links" :imageLinks="imageLinks"  @close="handleCloseModal"></Modal>
 </template>
 
@@ -108,8 +111,14 @@
         color: rgb(15, 9, 9);
     }
 
-    .project-container{
+    .main-container {
+        background: white;
         margin: 2rem;
+        padding: 1rem;
+    }
+
+    .project-container{
+        padding: 2rem;
     }
 
     .project {
@@ -139,9 +148,7 @@
 
     .item__background-image:hover {
         transition-duration: 450ms;
-        
-
-        /*box-shadow: 8px 8px 10px rgb(251, 255, 197);*/
+        box-shadow: 0px 8px 8px rgb(13, 5, 41);
     }
 
     .item__title {

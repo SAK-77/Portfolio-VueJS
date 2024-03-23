@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <!--
   • Le footer est identique sur toutes les pages.
-  • Des icônes avec des liens vers vos réseaux sociaux (GitHub, LinkedIn…)
+  • Des icônes avec des liens vers vos réseaux sociaux (GitHub, LinkedIn, Figma)
     :  Ils devront s'ouvrir dans un nouvel onglet.  :: social-medias
   • La date de dernière mise à jour du site         :: class="copyright"
 -->
@@ -40,12 +40,10 @@
       </div>
     </div>
 
-    <!-- If you give me some credit or shoutout here by linking to my website, then it will be a big thing for me and will help me a lot :) -->
     <div class="bottom">
       &copy; Copyright 2024. Made by 
-      <a rel="noreferrer" target="_blank" href="#"> Assoua KOUASSI</a>
+      <a rel="noreferrer" target="_blank" href=""> Salomon KOUASSI</a>
     </div>
-    
   </footer>
 </template>
 
@@ -59,21 +57,22 @@
   .upper {
     margin: 2.5rem;
     display: flex;
-
   }
 
-  .upper-child{
+  .upper-child {
     flex: 1;
-    padding: 10px;
-    margin-right: 1.3rem;
+  }
+  .social-container {
+    display: flex;
+    justify-content: end;
   }
 
-  .social-links, .social-container{
-    text-align: center;
+  .social-link {
+    margin-left: 1.5rem;
   }
 
-  .social-link{
-    margin-left: 2rem;
+  .social-links h2{
+    text-align: end;
   }
 
   .bottom {
@@ -86,7 +85,7 @@
   }
 
   h2 {
-    font-size: 2.1rem;
+    font-size: 2rem;
     font-weight: bold;
     margin: 0.5rem;
   }
@@ -94,20 +93,22 @@
   p {
     color: #eee;
     font-size: 1.1rem;
-    line-height: 1.7; 
+    line-height: 1.5; 
+    margin: 0.5rem;
   }
 
   .icon {
     width: 2.5rem; 
   }
 
-  .figma{
+  .figma {
     background-color: white;
   }
+  
   .bottom a {
-    text-decoration: none;
     font-weight: bold;
     margin-left: 2px;
+    color: blanchedalmond;
   }
   
 </style>

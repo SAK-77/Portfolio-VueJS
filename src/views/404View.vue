@@ -1,7 +1,5 @@
 <script setup>
   import { RouterLink } from "vue-router"
-  //import TheHeader from "../components/Header.vue"
-  //import TheFooter from "../components/Footer.vue"
 </script>
 
 <template>
@@ -25,10 +23,10 @@
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
+    /*background-image: url('../components/images/img404.jpg');*/
   }
 
   h1, h2  {
-    font-family: "Robotech";
     font-size: 8rem;
     font-weight: bold;
   }

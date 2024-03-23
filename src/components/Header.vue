@@ -3,54 +3,52 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <!--
     • Le header est présent sur toutes les pages.
-    • une photo(de moi en mode logo) qui ramène en haut de la page d'accueil lorsqu'on clique dessus.
-    • Un menu avec des liens d'ancrage vers AboutView, Projects et le ContactForm.
+    • une photo(de moi comme logo) qui ramène en haut de la page d'accueil lorsqu'on clique dessus.
+    • Un menu avec des liens d'ancrage vers HomeHero, AboutView, Projects et le ContactForm.
+
+    • L'élément de menu actif devra être souligné.
 -->
 
-<script setup>
-    /*import ThemeChanger from './ThemeChanger.vue';*/
-    
-    import { onMounted, ref } from "vue";
-    //import Contact from "./Contact.vue"
-    //import Home from "../views/HomeView.vue";
-
-    const display = ref(true);
+<script setup> 
+    import { onMounted } from "vue";
 
     onMounted(() => {
-        let linksContainer = document.querySelector(".navigation");
-        let links = linksContainer.querySelectorAll("a");
+        let linksContainer = document.querySelector("nav");
+        let links = linksContainer.querySelectorAll(".menu-link");
         let project = document.querySelector("#project");
         let contact = document.querySelector("#contact");
-        let presentation = document.querySelector("#presentation");
-        let home = document.querySelector("#home-hero")
+        let about = document.querySelector("#about");
+        let home = document.querySelector("#home-hero");
 
-        //Function to set an underline when scrolling on the right section
-        function changeStyleOnScroll() {
+        //Underline the menu link when scrolling on the right section
+        function ActiveLinkStyle() {
             let projectTop = project.offsetTop;
-            let contactTop = 600;
-            let presentationTop = -20;
+            let contactTop = contact.offsetTop;
+            let aboutTop = about.offsetTop;
+            let homeTop = home.offsetTop;
             window.onscroll = () => {
                 let currentSection = "";
-                if (scrollY >= contactTop) {
-                    currentSection = contact.id
-                } else if (scrollY >= projectTop) {
+                if (scrollY >= homeTop) {
+                    currentSection = home.id;
+                } else if (scrollY >= aboutTop) {
+                    currentSection = about.id;
+                }  else if (scrollY >= projectTop) {
                     currentSection = project.id;
-                } else if (scrollY >= presentationTop) {
-                    currentSection = presentation.id;
+                } else if (scrollY >= contactTop ) {
+                    currentSection = contact.id
                 }
 
                 links.forEach(link => {
                     link.classList.remove("active");
-                    if(link.classList.contains(currentSection)){
+                    if(link.href.includes(currentSection)){
                         link.classList.add("active");
                     }
                 })
             }
         }
-                
-
-        //Function to add underline when a link is clicked and remove the underline from the othes links
-        function changeLinkStyleOnCLick() {
+        
+        //Underline a clicked link and remove the underline from the previous one
+        function CLickedLinkStyle() {
             links.forEach(link => {
                 link.addEventListener("click",() => {
                     links.forEach(link => {
@@ -61,8 +59,8 @@
             })
         }
         
-        changeLinkStyleOnCLick();
-        changeStyleOnScroll()
+        CLickedLinkStyle();
+        ActiveLinkStyle()
     })
 
 </script>
@@ -72,22 +70,22 @@
     <header class="header">
         <div class="header-container">
             <div class="header-child logo-container">
-                <div class="logo-img-cont">
-                    <img
-                    src=""
-                    alt="logo Image" class="logo-img" />
+                <div class="img-container">
+                    <a href="#home-hero">
+                        <img src="./icons/Logo.png" alt="logo Image" class="logo-img" />
+                    </a>
                 </div>
-                <h4>Assoua KOUASSI</h4>
+                <a href="#home-hero"><h4>SALOMON KOUASSI</h4></a>
             </div>
 
             <div class="header-child navigation">
                 <nav>
-                    <ul class="navigation-links">
-                        <li class="navigation-link"><a href="#home-hero"> Home </a></li>
-                        <li class="navigation-link"><a href="#about"> About </a></li>
-                        <li class="navigation-link"><a href="#project"> Projects </a></li>
-                        <li class="navigation-link"><a href="#contact"> Contact </a></li>
-                        <!-- <li><button class="btn btn-theme btn-sm"><a href="">Download CV</a></button></li> -->
+                    <ul>
+                        <li><a class="menu-link" href="#home-hero"> HOME </a></li>
+                        <li><a class="menu-link" href="#about"> ABOUT </a></li>
+                        <li><a class="menu-link" href="#project"> PROJECTS </a></li>
+                        <li><a class="menu-link" href="#contact"> CONTACT </a></li>
+                        <!-- <li><button"><a href="">---</a></button></li> -->
                     </ul>
                 </nav>
             </div>
@@ -96,6 +94,7 @@
 </template>
 
 <style scoped>
+
     .header {
         position: fixed;
         background: grey;
@@ -117,44 +116,50 @@
         margin: 5px;
         cursor: pointer;
         font-size: 1rem;
+        width: 30%;
     }
 
     .navigation {
         display: flex;
         align-items: center;
         justify-content: end;
+        width: 70%;
     }
 
     ul{
         list-style: none;
     }
 
-    li{
-        display: inline;
+    li {
+        display: inline-flex;
+        padding: 0.2rem;
     }
 
-    a{
+    a {
         text-decoration: none;
-        color: rgb(24, 23, 23);
+        color: white/* rgb(24, 23, 23)*/;
         font-size: 1rem;
         font-weight: bold;
     }
 
-    a:active {
-        text-decoration: #000;
-    }
-
-    a:hover {
+    .logo-container a:hover {
         text-shadow: rgb(16, 9, 112) 1px 0 10px;
         transition-duration: 450ms;
     }
 
-    .logo-img-cont {
+    /*.menu-link.active,*/
+    .menu-link:active {
+        text-decoration: underline;
+        text-underline-offset: 0.4rem;
+        text-decoration-thickness: 0.2rem;
+    }
+
+    .img-container {
         margin-right: 0.8rem;
-        width: 3.2rem;
-        height: 2.5rem;
+        width: 2.7rem;
+        height: 2.7rem;
         overflow: hidden;
-        border-radius: 30rem;
+        border-radius: 50%;
         background: rgb(185, 181, 181);
         border-style: solid;
         color: white;
@@ -168,12 +173,9 @@
     }
 
     h4 {
-        color: #000;
+        color: #fff;
         font-weight: bold;
     }
 
-    .navigation-link {
-        padding: 0.2rem;
-    }
 </style>
 
