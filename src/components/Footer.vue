@@ -1,3 +1,4 @@
+<!-- eslint-disable no-unused-vars -->
 <!-- eslint-disable vue/multi-word-component-names -->
 <!--
   • Le footer est identique sur toutes les pages.
@@ -7,6 +8,7 @@
 -->
 
 <script>
+import { RouterLink } from "vue-router"
 </script>
 
 <template>
@@ -42,7 +44,7 @@
 
     <div class="bottom">
       &copy; Copyright 2024. Made by 
-      <a rel="noreferrer" target="_blank" href=""> Salomon KOUASSI</a>
+      <RouterLink to="/mon-blog">Salomon KOUASSI</RouterLink>
     </div>
   </footer>
 </template>
